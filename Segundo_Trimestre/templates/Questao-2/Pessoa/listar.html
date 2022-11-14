@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block conteudo %}
+
+<h1>{{Nome}}</h1>
+
+<div class="container-fluid">
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'pessoas.criar' %}">Cadastrar Pessoa</a>
+        <i class="fa-solid fa-plus"></i>
+    </p>
+    <table class="table table-dark table-striped-columns table-bordered border-light">
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+        {% for pessoa in pessoas %}
+        <tr>
+            <td>{{ pessoa.id }}</td>
+            <td>{{ pessoa.nome }}</td>
+            <td>{{ pessoa.cpf }}</td>
+            <td>
+                <p type="button" class="btn btn-warning" >
+                    <a href="{% url 'pessoas.editar' pessoa.id %}"><i class="fa-solid fa-wrench"></i></a>
+                </p>
+            </td>
+            <td>
+                <p type="button" class="btn btn-danger">
+                    <a href="{% url 'pessoas.excluir' pessoa.id %}" onclick="return confirm('Deseja realmente excluir {{ pessoa.nome|escapejs }}?')"><i class="fa-solid fa-trash"></i></a>
+                </p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'home' %}">Voltar para a página inicial</a><i class="fa-solid fa-reply"></i>
+    </p>
+</div>
+
+{% endblock %}

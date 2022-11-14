@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>{{nome}}</h1>
+
+<div class="container-fluid">
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'atendes.criar' %}">Cadastrar novo atendimento</a>
+        <i class="fa-solid fa-plus"></i>
+    </p>
+    
+    <table class="table table-dark table-striped-columns table-bordered border-light">
+        <tr>
+            <th>#</th>
+            <th>Corretor</th>
+            <th>Região</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+        {% for atende in atendes %}
+        <tr>
+            <td>{{ atende.id }}</td>
+            <td>{{ atende.corretor}}</td>
+            <td>{{ atende.regiao}}</td>
+            <td>
+                <p type="button" class="btn btn-warning">
+                    <a href="{% url 'atendes.editar' atende.id %}"><i class="fa-solid fa-wrench"></i></a>
+                </p>
+            </td>
+            <td>
+                <p type="button" class="btn btn-danger">
+                    <a href="{% url 'atendes.excluir' atende.id %}" onclick="return confirm('Deseja realmente excluir {{ atende.corretor|escapejs }} atende {{ atende.regiao|escapejs }}?')"><i class="fa-solid fa-trash"></i></a>
+                </p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'corretora' %}">Voltar para página Inicial</a>
+        <i class="fa-solid fa-reply"></i>
+    </p>    
+</div>
+
+{% endblock %}

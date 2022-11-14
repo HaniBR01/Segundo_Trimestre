@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>{{nome}}</h1>
+
+<div class="container-fluid">
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'telefones.criar' %}">Cadastrar novo telefone</a>
+        <i class="fa-solid fa-plus"></i>
+    </p>
+    
+    <table class="table table-dark table-striped-columns table-bordered border-light">
+        <tr>
+            <th>#</th>
+            <th>Corretor</th>
+            <th>Area</th>
+            <th>Numero</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+        {% for telefone in telefones %}
+        <tr>
+            <td>{{ telefone.id }}</td>
+            <td>{{ telefone.corretor}}</td>
+            <td>{{ telefone.area}}</td>
+            <td>{{ telefone.numero }}</td>
+            <td>
+                <p type="button" class="btn btn-warning">
+                    <a href="{% url 'telefones.editar' telefone.id %}" ><i class="fa-solid fa-wrench"></i></a>
+                </p>
+            </td>
+            <td>
+                <p type="button" class="btn btn-danger">
+                    <a href="{% url 'telefones.excluir' telefone.id %}" title="Excluir" onclick="return confirm('Deseja realmente excluir o numero {{ telefone.numero|escapejs }} de {{ telefone.corretor|escapejs }}?')"><i class="fa-solid fa-trash"></i></a>
+                </p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'corretora' %}">Voltar para página Inicial</a>
+        <i class="fa-solid fa-reply"></i>
+    </p>    
+</div>
+
+{% endblock %}

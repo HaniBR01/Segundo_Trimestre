@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block conteudo %}
+
+<h1>{{ nome }}</h1>
+
+<div class="container-fluid">
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'funcionarios.criar' %}">Adicionar funcionario</a>
+        <i class="fa-solid fa-plus"></i>
+    </p>
+    <table class="table table-dark table-striped-columns table-bordered border-light">
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Departamento</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+        {% for funcionario in funcionarios %}
+        <tr>
+            <td>{{ funcionario.id }}</td>
+            <td>{{ funcionario.nome }}</td>
+            <td>{{ funcionario.departamento }}</td>
+            <td>
+                <p type="button" class="btn btn-warning" >
+                    <a href="{% url 'funcionarios.editar' funcionario.id %}"><i class="fa-solid fa-wrench"></i></a>
+                </p>
+            </td>
+            <td>
+                <p type="button" class="btn btn-danger">
+                    <a href="{% url 'funcionarios.excluir' funcionario.id %}" onclick="return confirm('Deseja realmente excluir {{ funcionario.nome|escapejs }}?')"><i class="fa-solid fa-trash"></i></a>
+                </p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'home' %}">Voltar para a página inicial</a><i class="fa-solid fa-reply"></i>
+    </p>
+</div>
+
+{% endblock %}

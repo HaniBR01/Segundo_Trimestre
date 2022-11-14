@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>{{nome}}</h1>
+
+<div class="container-fluid">
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'regiaos.criar' %}">Cadastrar nova Região</a>
+        <i class="fa-solid fa-plus"></i>
+    </p>
+    
+    <table class="table table-dark table-striped-columns table-bordered border-light">
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Municipio</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+        {% for regiao in regiaos %}
+        <tr>
+            <td>{{ regiao.id }}</td>
+            <td>{{ regiao.nome}}</td>
+            <td>{{ regiao.municipio}}</td>
+            <td>
+                <p type="button" class="btn btn-warning">
+                    <a href="{% url 'regiaos.editar' regiao.id %}"><i class="fa-solid fa-wrench"></i></a>
+                </p>
+            </td>
+            <td>
+                <p type="button" class="btn btn-danger">
+                    <a href="{% url 'regiaos.excluir' regiao.id %}" onclick="return confirm('Deseja realmente excluir {{ regiao.nome|escapejs }}?')"><i class="fa-solid fa-trash"></i></a>
+                </p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'corretora' %}">Voltar para página Inicial</a>
+        <i class="fa-solid fa-reply"></i>
+    </p>    
+</div>
+
+{% endblock %}

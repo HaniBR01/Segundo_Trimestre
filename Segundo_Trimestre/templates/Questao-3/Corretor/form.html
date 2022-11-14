@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block conteudo %}
+
+<h1>{{nome}}</h1>
+
+<form method="POST">
+    
+    {% csrf_token %}
+    
+    <div class="mb-3">
+        {{frm.cpf.label}}
+        {{frm.cpf|add_class:'form-control'}}
+    </div>
+    
+    <div class="mb-3">
+        {{frm.nome.label}}
+        {{frm.nome|add_class:'form-control'}}
+    </div>
+    
+    <div class="mb-3">
+        {{frm.comissao.label}}
+        {{frm.comissao|add_class:'form-control'}}
+    </div>
+    
+    <div class="mb-3">
+        {{frm.gerente.label}}
+        {{frm.gerente|add_class:'form-control'}}
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        <i class="fa-solid fa-save"></i> Salvar
+    </button>
+
+</form>
+
+<p type="button" class="btn btn-light">
+    <a href=" {% url 'corretores' %}">Retornar à lista de Municípios</a>
+    <i class="fa-solid fa-reply"></i>
+</p>
+
+{% endblock %}

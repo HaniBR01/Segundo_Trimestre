@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>{{nome}}</h1>
+<div class="d-flex flex-column align-items-center">
+    <div class="container text-bg-secondary bg-gradient p-4 d-flex flex-row align-items-center justify-content-between">
+        <h3 class="text-dark">Sistema de Corretoria</h1>
+        <div class="d-flex flex-column">
+            <p type="button" class="btn btn-light">
+                <a href="{% url 'municipios' %}">Veja os municipios</a>
+            </p>
+            <p type="button" class="btn btn-light">
+                <a href="{% url 'corretores' %}">Veja os corretores</a>
+            </p>
+            <p type="button" class="btn btn-light">
+                <a href="{% url 'telefones' %}">Veja os numeros</a>
+            </p>
+            <p type="button" class="btn btn-light">
+                <a href="{% url 'regiaos' %}">Veja as regiões</a>
+            </p>
+            <p type="button" class="btn btn-light">
+                <a href="{% url 'atendes' %}">Veja os atendimentos</a>
+            </p>
+        </div>
+    </div>
+    <div class="container text-bg-secondary bg-gradient p-4 d-flex flex-column align-items-center justify-content-between">
+        <p type="button" class="btn btn-light">
+            <a href="{% url 'home' %}">Voltar para Home</a>
+            <i class="fa-solid fa-reply"></i>
+        </p>
+    </div>
+</div>
+{% endblock %}

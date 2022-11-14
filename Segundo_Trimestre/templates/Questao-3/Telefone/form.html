@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block conteudo %}
+
+<h1>{{nome}}</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        {{frm.corretor.label}}
+        {{frm.corretor|add_class:'form-control'}}
+    </div>
+    <div class="mb-3">
+        {{frm.area.label}}
+        {{frm.area|add_class:'form-control'}}
+    </div>
+    <div class="mb-3">
+        {{frm.numero.label}}
+        {{frm.numero|add_class:'form-control'}}
+    </div>
+    <button type="submit" class="btn btn-primary">
+        <i class="fa-solid fa-save"></i> Salvar
+    </button>
+</form>
+<p type="button" class="btn btn-light">
+    <a href=" {% url 'telefones' %}">Retornar à lista de Telefones</a>
+    <i class="fa-solid fa-reply"></i>
+</p>
+
+{% endblock %}

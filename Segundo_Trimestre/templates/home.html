@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>Atividades WEB II 2º trimestre</h1>
+<div class="d-flex flex-column align-items-center">
+    <div class="container text-bg-secondary bg-gradient p-4 d-flex flex-row align-items-center justify-content-between">
+        <h3 class="text-dark">Sistema da ADCON</h1>
+        <div class="d-flex flex-column">
+            <p type="button" class="btn btn-light">
+                <a href="{% url 'departamentos' %}">Veja os departamentos</a>
+            </p>
+            <p type="button" class="btn btn-light">
+                <a href="{% url 'funcionarios' %}">Veja os funcionario</a>
+            </p>
+        </div>
+    </div>
+    <div class="container text-bg-secondary bg-gradient p-4 d-flex flex-row align-items-center justify-content-between">
+        <h3 class="text-dark">Sistema do DETRAN</h3>
+        <div class="d-flex flex-column">
+            <p type="button" class="btn btn-light">
+                <a href="{% url 'pessoas' %}">Veja os Motoristas</a>
+            </p>
+            <p type="button" class="btn btn-light">
+                <a href="{% url 'habilitacoes' %}">Veja as Carteiras</a>
+            </p>
+        </div>
+    </div>
+    <div class="container text-bg-secondary bg-gradient p-4 d-flex flex-column align-items-center justify-content-between">
+        <p type="button" class="btn btn-light">
+            <a href="{% url 'corretora' %}">Ir para corretoria</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

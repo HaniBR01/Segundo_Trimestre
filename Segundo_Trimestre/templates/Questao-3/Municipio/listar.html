@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>{{nome}}</h1>
+
+<div class="container-fluid">
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'municipios.criar' %}">Cadastrar novo municipio</a>
+        <i class="fa-solid fa-plus"></i>
+    </p>
+    
+    <table class="table table-dark table-striped-columns table-bordered border-light">
+        <tr>
+            <th>#</th>
+            <th>Unidade Federativa</th>
+            <th>Nome</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+        {% for municipio in municipios %}
+        <tr>
+            <td>{{ municipio.id }}</td>
+            <td>{{ municipio.uf}}</td>
+            <td>{{ municipio.nome}}</td>
+            <td>
+                <p type="button" class="btn btn-warning">
+                    <a href="{% url 'municipios.editar' municipio.id %}"><i class="fa-solid fa-wrench"></i></a>
+                </p>
+            </td>
+            <td>
+                <p type="button" class="btn btn-danger">
+                    <a href="{% url 'municipios.excluir' municipio.id %}" onclick="return confirm('Deseja realmente excluir {{ municipio.nome|escapejs }}?')"><i class="fa-solid fa-trash"></i></a>
+                </p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'corretora' %}">Voltar para página Inicial</a>
+        <i class="fa-solid fa-reply"></i>
+    </p>    
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block conteudo %}
+
+<h1>{{ nome }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        {{frm.validade.label}}
+        {{frm.validade|add_class:'form-control'}}
+    </div>
+    <div class="mb-3">
+        {{frm.pessoa.label}}
+        {{frm.pessoa|add_class:'form-control'}}
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i> Salvar
+    </button>
+</form>
+
+<p type="Buttom" class="btn btn-light">
+    <a href="{% url 'habilitacoes' %}">Retornar à lista de Carteiras</a>
+    <i class="fa-solid fa-reply"></i>
+</p>
+
+{% endblock %}

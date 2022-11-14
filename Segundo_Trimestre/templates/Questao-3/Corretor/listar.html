@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>{{nome}}</h1>
+
+<div class="container-fluid">
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'corretores.criar' %}">Cadastrar novo corretor</a>
+        <i class="fa-solid fa-plus"></i>
+    </p>
+    
+    <table class="table table-dark table-striped-columns table-bordered border-light">
+        <tr>
+            <th>#</th>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>Comissão</th>
+            <th>Gerente</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+        {% for corretor in corretors %}
+        <tr>
+            <td>{{ corretor.id }}</td>
+            <td>{{ corretor.cpf }}</td>
+            <td>{{ corretor.nome }}</td>
+            <td>{{ corretor.comissao }}</td>
+            <td>{{ corretor.gerente }}</td>
+            <td>
+                <p type="button" class="btn btn-warning">
+                    <a href="{% url 'corretores.editar' corretor.id %}" ><i class="fa-solid fa-wrench"></i></a>
+                </p>
+            </td>
+            <td>
+                <p type="button" class="btn btn-danger">
+                    <a href="{% url 'corretores.excluir' corretor.id %}" onclick="return confirm('Deseja realmente excluir {{ corretor.nome|escapejs }}?')"><i class="fa-solid fa-trash"></i></a>
+                </p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p type="button" class="btn btn-light">
+        <a href="{% url 'corretora' %}">Voltar para página Inicial</a>
+        <i class="fa-solid fa-reply"></i>
+    </p>    
+</div>
+
+{% endblock %}
